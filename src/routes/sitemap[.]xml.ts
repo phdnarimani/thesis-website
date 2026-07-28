@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { SERVICES } from "@/data/services";
 import { POSTS } from "@/data/posts";
 
-const BASE_URL = "https://thesis-navigators-ai.lovable.app";
+const BASE_URL = "https://thesis-website.phd-narimani.workers.dev";
 
 
 interface SitemapEntry {
