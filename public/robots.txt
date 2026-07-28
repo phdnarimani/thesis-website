@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thesis-navigators-ai.lovable.app/sitemap.xml
+Sitemap: https://thesis-website.phd-narimani.workers.dev/sitemap.xml
