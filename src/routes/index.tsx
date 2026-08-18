@@ -20,38 +20,23 @@ import analysisImg from "@/assets/analysis.jpg";
 import thesisImg from "@/assets/thesis-stack.jpg";
 import { SERVICES, FIELDS } from "@/data/services";
 import { FAQS } from "@/data/faqs";
-import { SITE_NAME, CONTACT } from "@/data/site";
+import { SITE_NAME, SITE_URL, CONTACT } from "@/data/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "مشاوره پایان‌نامه و انجام مقاله ISI | پژوهش‌یار آکادمیک" },
-      {
-        name: "description",
-        content:
-          "مشاوره تخصصی پایان‌نامه ارشد و دکتری، نگارش مقاله ISI و Scopus، تحلیل آماری SPSS و SmartPLS با تضمین کیفیت و تحویل به‌موقع. مشاوره رایگان.",
-      },
-      { property: "og:title", content: "مشاوره پایان‌نامه و انجام مقاله ISI | پژوهش‌یار آکادمیک" },
-      {
-        property: "og:description",
-        content: "مشاوره تخصصی پایان‌نامه ارشد و دکتری، نگارش مقاله ISI و Scopus، تحلیل آماری SPSS و SmartPLS با تضمین کیفیت و تحویل به‌موقع. مشاوره رایگان.",
-      },
-      { property: "og:url", content: "/" },
+      { title: "پایان‌نامه نویسی و آموزش پایان‌نامه | پژوهش‌یار آکادمیک" },
+      { name: "description", content: "آموزش گام‌به‌گام پایان‌نامه نویسی، انتخاب موضوع، پروپوزال، نگارش فصل‌های پایان‌نامه، تحلیل آماری و آمادگی دفاع برای دانشجویان ارشد و دکتری." },
+      { property: "og:title", content: "پایان‌نامه نویسی و آموزش پایان‌نامه | پژوهش‌یار آکادمیک" },
+      { property: "og:description", content: "راهنمای آموزش پایان‌نامه نویسی از انتخاب موضوع و پروپوزال تا نگارش فصل‌ها، تحلیل آماری و دفاع." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL + "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "پایان‌نامه نویسی و آموزش پایان‌نامه | پژوهش‌یار آکادمیک" },
+      { name: "twitter:description", content: "آموزش گام‌به‌گام پایان‌نامه نویسی و خدمات تخصصی پژوهشی برای دانشجویان ارشد و دکتری." },
     ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: SITE_NAME,
-          description: "مشاوره پایان‌نامه، نگارش مقاله و تحلیل آماری",
-          telephone: CONTACT.phones[0],
-          priceRange: "$$",
-        }),
-      },
-    ],
+    links: [{ rel: "canonical", href: SITE_URL + "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"ProfessionalService", "@id":`${SITE_URL}/#service`, name:SITE_NAME, url:SITE_URL, description:"آموزش و خدمات تخصصی پایان‌نامه، پروپوزال، مقاله و تحلیل آماری.", telephone:CONTACT.phones[0], areaServed:"IR", provider:{"@id":`${SITE_URL}/#organization`} }) }],
   }),
   component: Index,
 });
@@ -110,11 +95,10 @@ function Index() {
               مرکز تخصصی خدمات پژوهشی و دانشگاهی
             </p>
             <h1 className="text-3xl font-extrabold leading-[1.4] md:text-5xl md:leading-[1.35]">
-              مشاوره پایان‌نامه، مقاله و تحلیل آماری با <span className="text-gold">تضمین کیفیت</span>
+              پایان‌نامه نویسی و آموزش پایان‌نامه از <span className="text-gold">صفر تا دفاع</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-hero-foreground/85">
-              از انتخاب موضوع و نگارش پروپوزال تا تحلیل آماری فصل چهارم و چاپ مقاله ISI؛ تیم
-              پژوهش‌یار آکادمیک با بیش از یک دهه تجربه، در تمام مراحل مسیر پژوهشی در کنار شماست.
+              اگر می‌پرسید برای نوشتن پایان‌نامه از کجا شروع کنیم، مسیر پژوهش را از انتخاب موضوع و نگارش پروپوزال تا تدوین فصل‌ها، تحلیل آماری و آماده‌سازی دفاع به‌صورت مرحله‌به‌مرحله دنبال کنید. خدمات تخصصی پایان‌نامه، مقاله و تحلیل داده نیز متناسب با نیاز پژوهش ارائه می‌شود.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -321,6 +305,21 @@ function Index() {
             <Link to="/faq" className="font-bold text-primary hover:underline">
               مشاهده همه سوالات متداول ←
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Thesis learning hub */}
+      <section className="bg-secondary py-16">
+        <div className="container-site">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-extrabold md:text-3xl">آموزش پایان‌نامه نویسی؛ از انتخاب موضوع تا دفاع</h2>
+            <p className="mx-auto mt-3 max-w-3xl leading-8 text-muted-foreground">اگر تازه می‌خواهید پایان‌نامه را شروع کنید، راهنماهای آموزشی ما مراحل انتخاب موضوع، پروپوزال، روش تحقیق، فصل چهارم، تحلیل آماری و دفاع را توضیح می‌دهند.</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <Link to="/blog/thesis-writing-guide" className="rounded-2xl border border-border bg-card p-6 shadow-card-soft transition-all hover:-translate-y-1 hover:border-primary/40"><h3 className="text-lg font-bold">راهنمای جامع پایان‌نامه نویسی</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">مراحل نوشتن پایان‌نامه از انتخاب موضوع تا پروپوزال، فصل‌ها و جلسه دفاع.</p><span className="mt-4 inline-block font-bold text-primary">مطالعه راهنما ←</span></Link>
+            <Link to="/blog/research-methodology-basics" className="rounded-2xl border border-border bg-card p-6 shadow-card-soft transition-all hover:-translate-y-1 hover:border-primary/40"><h3 className="text-lg font-bold">روش تحقیق پایان‌نامه</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">انتخاب روش کمی، کیفی یا آمیخته و نکات مهم طراحی پژوهش.</p><span className="mt-4 inline-block font-bold text-primary">مطالعه مقاله ←</span></Link>
+            <Link to="/blog/spss-vs-smartpls" className="rounded-2xl border border-border bg-card p-6 shadow-card-soft transition-all hover:-translate-y-1 hover:border-primary/40"><h3 className="text-lg font-bold">تحلیل آماری پایان‌نامه</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">راهنمای انتخاب SPSS، SmartPLS و روش مناسب برای تحلیل فصل چهارم.</p><span className="mt-4 inline-block font-bold text-primary">مطالعه مقاله ←</span></Link>
           </div>
         </div>
       </section>
