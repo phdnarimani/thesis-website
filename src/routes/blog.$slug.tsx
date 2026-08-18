@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { CalendarDays, Clock } from "lucide-react";
 import { POSTS } from "@/data/posts";
+import { SITE_NAME, SITE_URL } from "@/data/site";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -15,30 +16,28 @@ export const Route = createFileRoute("/blog/$slug")({
       };
     }
     const p = loaderData.post;
+    const canonicalUrl = `${SITE_URL}/blog/${p.slug}`;
     return {
       meta: [
-        { title: `${p.title} | پژوهش‌یار آکادمیک` },
+        { title: `${p.title} | ${SITE_NAME}` },
         { name: "description", content: p.excerpt },
+        { name: "robots", content: "index, follow, max-image-preview:large" },
         { property: "og:title", content: p.title },
         { property: "og:description", content: p.excerpt },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${p.slug}` },
+        { property: "og:url", content: canonicalUrl },
+        { property: "og:locale", content: "fa_IR" },
+        { name: "twitter:card", content: "summary" },
+        { name: "twitter:title", content: p.title },
+        { name: "twitter:description", content: p.excerpt },
       ],
-      links: [{ rel: "canonical", href: `/blog/${p.slug}` }],
+      links: [{ rel: "canonical", href: canonicalUrl }],
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: p.title,
-            description: p.excerpt,
-            author: { "@type": "Organization", name: "پژوهش‌یار آکادمیک" },
-            inLanguage: "fa",
-          }),
-        },
+        { type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"Article", "@id":`${canonicalUrl}#article`, url:canonicalUrl, mainEntityOfPage:{"@type":"WebPage","@id":canonicalUrl}, headline:p.title, description:p.excerpt, datePublished:p.date, dateModified:p.date, author:{"@type":"Organization",name:SITE_NAME}, publisher:{"@type":"Organization",name:SITE_NAME}, inLanguage:"fa-IR", articleSection:p.category }) },
+        { type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"BreadcrumbList", itemListElement:[ {"@type":"ListItem",position:1,name:"صفحه اصلی",item:SITE_URL}, {"@type":"ListItem",position:2,name:"وبلاگ",item:`${SITE_URL}/blog`}, {"@type":"ListItem",position:3,name:p.title,item:canonicalUrl} ] }) }
       ],
     };
+
   },
   notFoundComponent: PostNotFound,
   errorComponent: PostNotFound,
@@ -84,6 +83,15 @@ function BlogPostPage() {
           </p>
         ))}
       </div>
+
+      <nav aria-label="مقالات مرتبط" className="mt-10 rounded-2xl border border-border bg-secondary p-6">
+        <h2 className="text-lg font-extrabold">مطالب مرتبط</h2>
+        <div className="mt-4 grid gap-3">
+          {POSTS.filter((item) => item.slug !== post.slug).slice(0, 3).map((item) => (
+            <Link key={item.slug} to="/blog/$slug" params={{ slug: item.slug }} className="font-bold text-primary hover:underline">{item.title} ←</Link>
+          ))}
+        </div>
+      </nav>
       <div className="mt-10 rounded-2xl bg-secondary p-6 text-center">
         <p className="font-bold">به کمک تخصصی نیاز دارید؟</p>
         <p className="mt-2 text-sm leading-7 text-muted-foreground">
