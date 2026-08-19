@@ -1,10 +1,9 @@
 export const SITE_NAME = "پژوهش‌یار آکادمیک";
-export const SITE_TAGLINE = "آموزش و خدمات تخصصی پایان‌نامه، مقاله و تحلیل آماری";
-export const SITE_URL = "https://thesis-website.phd-narimani.workers.dev";
+export const SITE_TAGLINE = "مشاوره و خدمات تخصصی پایان‌نامه، مقاله و تحلیل آماری";
 
 export const CONTACT = {
-  phones: ["09339734994", "09141780265"],
-  telegram: ["09339734994", "09141780265"],
+  phones: ["09339734994", "0914180265"],
+  telegram: ["09339734994", "0914180265"],
   whatsapp: "09141780265",
   eitaa: "09141780265",
   bale: "09141780265",
