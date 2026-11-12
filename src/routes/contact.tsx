@@ -17,9 +17,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "تماس با ما | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "مشاوره رایگان از طریق تلفن، تلگرام و واتساپ." },
-      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/contact` },
+      { property: "og:url", content: `${SITE_URL}/contact` },
     ],
-    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/contact` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
     scripts: [
       {
         type: "application/ld+json",
