@@ -14,9 +14,9 @@ export const Route = createFileRoute("/terms")({
       },
       { property: "og:title", content: "قوانین و مقررات | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "شرایط استفاده، محرمانگی و ضمانت کیفیت." },
-      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/terms` },
+      { property: "og:url", content: `${SITE_URL}/terms` },
     ],
-    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/terms` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/terms` }],
   }),
   component: TermsPage,
 });
