@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CheckCircle2, Upload, Send } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SERVICES, FIELDS } from "@/data/services";
-import { CONTACT } from "@/data/site";
+import { CONTACT, SITE_URL } from "@/data/site";
 import { supabase } from "@/integrations/supabase/client";
 
 
@@ -21,9 +21,9 @@ export const Route = createFileRoute("/order")({
         property: "og:description",
         content: "سفارش پایان‌نامه، مقاله و تحلیل آماری با پیش‌فاکتور رایگان.",
       },
-      { property: "og:url", content: "/order" },
+      { property: "og:url", content: `${SITE_URL}/order` },
     ],
-    links: [{ rel: "canonical", href: "/order" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/order` }],
   }),
   component: OrderPage,
 });
