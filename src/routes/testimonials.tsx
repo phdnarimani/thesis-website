@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { Star } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/testimonials")({
       },
       { property: "og:title", content: "نظرات مشتریان | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "تجربیات کاربران از خدمات پژوهشی ما." },
-      { property: "og:url", content: "/testimonials" },
+      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/testimonials` },
     ],
-    links: [{ rel: "canonical", href: "/testimonials" }],
+    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/testimonials` }],
   }),
   component: TestimonialsPage,
 });
