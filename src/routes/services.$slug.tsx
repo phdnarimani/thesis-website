@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SERVICES } from "@/data/services";
-import { CONTACT } from "@/data/site";
+import { CONTACT, SITE_URL } from "@/data/site";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -17,15 +17,16 @@ export const Route = createFileRoute("/services/$slug")({
       };
     }
     const s = loaderData.service;
+    const canonicalUrl = `${SITE_URL}/services/${s.slug}`;
     return {
       meta: [
         { title: `${s.metaTitle} | پژوهش‌یار آکادمیک` },
         { name: "description", content: s.metaDescription },
         { property: "og:title", content: s.metaTitle },
         { property: "og:description", content: s.metaDescription },
-        { property: "og:url", content: `/services/${s.slug}` },
+        { property: "og:url", content: canonicalUrl },
       ],
-      links: [{ rel: "canonical", href: `/services/${s.slug}` }],
+      links: [{ rel: "canonical", href: canonicalUrl }],
       scripts: [
         {
           type: "application/ld+json",

@@ -12,7 +12,7 @@ export const CONTACT = {
   whatsapp: "09141780265",
   eitaa: "09141780265",
   bale: "09141780265",
-  email: "info@example.com",
+  email: "phd.narimani@gmail.com",
 };
 
 export const NAV_LINKS = [

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { FileDown, FileText, Table2, ClipboardList, Database, BookOpen } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -16,9 +17,9 @@ export const Route = createFileRoute("/downloads")({
         property: "og:description",
         content: "قالب پروپوزال، پایان‌نامه، مقاله، پرسشنامه و دیتاست رایگان.",
       },
-      { property: "og:url", content: "/downloads" },
+      { property: "og:url", content: `${SITE_URL}/downloads` },
     ],
-    links: [{ rel: "canonical", href: "/downloads" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/downloads` }],
   }),
   component: DownloadsPage,
 });

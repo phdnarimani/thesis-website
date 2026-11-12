@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { PageHero } from "@/components/site/PageHero";
 import { FAQS } from "@/data/faqs";
 
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/faq")({
       },
       { property: "og:title", content: "سوالات متداول | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "پاسخ سوالات رایج درباره خدمات پژوهشی ما." },
-      { property: "og:url", content: "/faq" },
+      { property: "og:url", content: `${SITE_URL}/faq` },
     ],
-    links: [{ rel: "canonical", href: "/faq" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/faq` }],
     scripts: [
       {
         type: "application/ld+json",

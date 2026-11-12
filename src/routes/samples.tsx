@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { FileText, BarChart3, ClipboardList, BookOpen, Table2 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -16,9 +17,9 @@ export const Route = createFileRoute("/samples")({
         property: "og:description",
         content: "نمونه پایان‌نامه، مقاله، پروپوزال و تحلیل آماری واقعی.",
       },
-      { property: "og:url", content: "/samples" },
+      { property: "og:url", content: `${SITE_URL}/samples` },
     ],
-    links: [{ rel: "canonical", href: "/samples" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/samples` }],
   }),
   component: SamplesPage,
 });

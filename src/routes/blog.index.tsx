@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { CalendarDays, Clock } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { POSTS } from "@/data/posts";
@@ -17,9 +18,9 @@ export const Route = createFileRoute("/blog/")({
         property: "og:description",
         content: "آموزش پایان‌نامه، مقاله، روش تحقیق و نرم‌افزارهای آماری.",
       },
-      { property: "og:url", content: "/blog" },
+      { property: "og:url", content: `${SITE_URL}/blog` },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/blog` }],
   }),
   component: BlogIndex,
 });

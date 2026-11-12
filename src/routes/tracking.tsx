@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Search, MessageSquare, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { CONTACT } from "@/data/site";
+import { CONTACT, SITE_URL } from "@/data/site";
 
 export const Route = createFileRoute("/tracking")({
   head: () => ({
@@ -15,9 +15,9 @@ export const Route = createFileRoute("/tracking")({
       },
       { property: "og:title", content: "پیگیری سفارش | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "پیگیری وضعیت پروژه و ارتباط با کارشناس." },
-      { property: "og:url", content: "/tracking" },
+      { property: "og:url", content: `${SITE_URL}/tracking` },
     ],
-    links: [{ rel: "canonical", href: "/tracking" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/tracking` }],
   }),
   component: TrackingPage,
 });

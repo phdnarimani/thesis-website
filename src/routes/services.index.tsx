@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { ArrowLeft } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SERVICES } from "@/data/services";
@@ -17,9 +18,9 @@ export const Route = createFileRoute("/services/")({
         property: "og:description",
         content: "فهرست کامل خدمات پایان‌نامه، مقاله، تحلیل آماری و ترجمه تخصصی.",
       },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: `${SITE_URL}/services` },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/services` }],
   }),
   component: ServicesIndex,
 });

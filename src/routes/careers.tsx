@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { PenTool, Languages, BarChart3 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/careers")({
       },
       { property: "og:title", content: "همکاری با ما | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "استخدام پژوهشگر، مترجم و تحلیلگر آماری." },
-      { property: "og:url", content: "/careers" },
+      { property: "og:url", content: `${SITE_URL}/careers` },
     ],
-    links: [{ rel: "canonical", href: "/careers" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/careers` }],
   }),
   component: CareersPage,
 });

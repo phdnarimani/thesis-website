@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { PageHero } from "@/components/site/PageHero";
 import { FIELDS } from "@/data/services";
 
@@ -16,9 +17,9 @@ export const Route = createFileRoute("/fields")({
         property: "og:description",
         content: "بیش از ۳۰ رشته دانشگاهی تحت پوشش خدمات پژوهشی ما.",
       },
-      { property: "og:url", content: "/fields" },
+      { property: "og:url", content: `${SITE_URL}/fields` },
     ],
-    links: [{ rel: "canonical", href: "/fields" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/fields` }],
   }),
   component: FieldsPage,
 });
