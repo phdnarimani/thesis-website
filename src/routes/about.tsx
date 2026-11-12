@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Target, Eye, Heart, Handshake, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import aboutImg from "@/assets/about-library.jpg";
-import { SITE_NAME } from "@/data/site";
+import { SITE_NAME, SITE_URL } from "@/data/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -18,9 +18,9 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "اهداف، چشم‌انداز و تعهدات مجموعه پژوهش‌یار آکادمیک.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: `${SITE_URL}/about` },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
   }),
   component: AboutPage,
 });
