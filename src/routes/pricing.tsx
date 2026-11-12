@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL } from "@/data/site";
 import { PageHero } from "@/components/site/PageHero";
 
 export const Route = createFileRoute("/pricing")({
@@ -15,9 +16,9 @@ export const Route = createFileRoute("/pricing")({
         property: "og:description",
         content: "قیمت‌گذاری شفاف خدمات پایان‌نامه، مقاله و تحلیل آماری.",
       },
-      { property: "og:url", content: "/pricing" },
+      { property: "og:url", content: `${SITE_URL}/pricing` },
     ],
-    links: [{ rel: "canonical", href: "/pricing" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/pricing` }],
   }),
   component: PricingPage,
 });
