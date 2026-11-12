@@ -14,9 +14,9 @@ export const Route = createFileRoute("/careers")({
       },
       { property: "og:title", content: "همکاری با ما | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "استخدام پژوهشگر، مترجم و تحلیلگر آماری." },
-      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/careers` },
+      { property: "og:url", content: `${SITE_URL}/careers` },
     ],
-    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/careers` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/careers` }],
   }),
   component: CareersPage,
 });
