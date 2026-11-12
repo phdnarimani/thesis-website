@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Phone, Mail, Send, MessageCircle, CheckCircle2, Upload } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { CONTACT } from "@/data/site";
+import { CONTACT, SITE_URL } from "@/data/site";
 import { supabase } from "@/integrations/supabase/client";
 
 
@@ -17,9 +17,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "تماس با ما | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "مشاوره رایگان از طریق تلفن، تلگرام و واتساپ." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/contact` },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/contact` }],
     scripts: [
       {
         type: "application/ld+json",
