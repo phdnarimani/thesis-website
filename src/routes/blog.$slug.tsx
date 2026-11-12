@@ -3,6 +3,50 @@ import { CalendarDays, Clock } from "lucide-react";
 import { POSTS } from "@/data/posts";
 import { SITE_NAME, SITE_URL } from "@/data/site";
 
+function jalaliDateToIso(value: string): string | undefined {
+  const parts = value.split("/").map(Number);
+  if (parts.length !== 3 || parts.some((part) => !Number.isInteger(part))) return undefined;
+
+  const [year, month, day] = parts;
+  if (year < 1200 || year > 1600 || month < 1 || month > 12 || day < 1) return undefined;
+  if (day > (month <= 6 ? 31 : 30)) return undefined;
+
+  const jy = year + 1595;
+  let days =
+    -355668 +
+    365 * jy +
+    Math.floor(jy / 33) * 8 +
+    Math.floor(((jy % 33) + 3) / 4) +
+    day;
+  days += month < 7 ? (month - 1) * 31 : (month - 7) * 30 + 186;
+
+  let gy = 400 * Math.floor(days / 146097);
+  days %= 146097;
+  if (days > 36524) {
+    gy += 100 * Math.floor(--days / 36524);
+    days %= 36524;
+    if (days >= 365) days++;
+  }
+  gy += 4 * Math.floor(days / 1461);
+  days %= 1461;
+  if (days > 365) {
+    gy += Math.floor((days - 1) / 365);
+    days = (days - 1) % 365;
+  }
+
+  let gregorianDay = days + 1;
+  const leap = gy % 4 === 0 && (gy % 100 !== 0 || gy % 400 === 0);
+  const monthDays = [0, 31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let gregorianMonth = 1;
+  while (gregorianMonth <= 12 && gregorianDay > monthDays[gregorianMonth]) {
+    gregorianDay -= monthDays[gregorianMonth];
+    gregorianMonth++;
+  }
+
+  if (gregorianMonth > 12) return undefined;
+  return `${gy}-${String(gregorianMonth).padStart(2, "0")}-${String(gregorianDay).padStart(2, "0")}`;
+}
+
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = POSTS.find((p) => p.slug === params.slug);
@@ -33,7 +77,7 @@ export const Route = createFileRoute("/blog/$slug")({
       ],
       links: [{ rel: "canonical", href: canonicalUrl }],
       scripts: [
-        { type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"Article", "@id":`${canonicalUrl}#article`, url:canonicalUrl, mainEntityOfPage:{"@type":"WebPage","@id":canonicalUrl}, headline:p.title, description:p.excerpt, datePublished:p.date, dateModified:p.date, author:{"@type":"Organization",name:SITE_NAME}, publisher:{"@type":"Organization",name:SITE_NAME}, inLanguage:"fa-IR", articleSection:p.category }) },
+        { type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"Article", "@id":`${canonicalUrl}#article`, url:canonicalUrl, mainEntityOfPage:{"@type":"WebPage","@id":canonicalUrl}, headline:p.title, description:p.excerpt, datePublished:jalaliDateToIso(p.date), author:{"@type":"Organization",name:SITE_NAME}, publisher:{"@type":"Organization",name:SITE_NAME}, inLanguage:"fa-IR", articleSection:p.category }) },
         { type: "application/ld+json", children: JSON.stringify({ "@context":"https://schema.org", "@type":"BreadcrumbList", itemListElement:[ {"@type":"ListItem",position:1,name:"صفحه اصلی",item:SITE_URL}, {"@type":"ListItem",position:2,name:"وبلاگ",item:`${SITE_URL}/blog`}, {"@type":"ListItem",position:3,name:p.title,item:canonicalUrl} ] }) }
       ],
     };
