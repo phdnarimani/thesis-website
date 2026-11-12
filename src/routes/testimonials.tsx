@@ -14,9 +14,9 @@ export const Route = createFileRoute("/testimonials")({
       },
       { property: "og:title", content: "نظرات مشتریان | پژوهش‌یار آکادمیک" },
       { property: "og:description", content: "تجربیات کاربران از خدمات پژوهشی ما." },
-      { property: "og:url", content: `${"https://thesis-website.phd-narimani.workers.dev"}/testimonials` },
+      { property: "og:url", content: `${SITE_URL}/testimonials` },
     ],
-    links: [{ rel: "canonical", href: `${"https://thesis-website.phd-narimani.workers.dev"}/testimonials` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/testimonials` }],
   }),
   component: TestimonialsPage,
 });
